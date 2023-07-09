@@ -50,9 +50,9 @@ the probability of a hospitalization containing that term as:
 $$logit(P[Y_{it} = 1]) = \beta_0 + \beta_1 t_i + \beta_2 \mathbf{F(t_i)} + \beta_3 A_{t_i} + \beta_4 (A_{t_i} \times t_i)  + \beta_5 (A_{t_i} \times F(t_i))$$
 
 where:
-- $t_i$ represents the number of days January 1st, 2016 and the hospitalization discharge and
+- $t_i$ represents the number of days January 1st, 2016 and the hospitalization discharge 
 - $\mathbf{F(t_i)}$ is a polynomial spline on the day of the year
-- A_{t_i} is an indicator variable for whether the hospitalization occurred before or after March 1st, 2020
+- $A_{t_i}$ is an indicator variable for whether the hospitalization occurred before or after March 1st, 2020
 
 Intuitively, $\beta_1$ captures an overall temporal trend in documentation between 2016 and 2021. We would expect this to capture non-pandemic-related changes in documentation patterns. $\beta_2$ should allow us to model possible seasonal trends. $\beta_3$ should capture the immediate shift in documentation caused by the pandemic, while the remaining coefficients should capture the interactions between the pandemic and time.
 
