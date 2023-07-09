@@ -1,5 +1,7 @@
 # A linguistic analysis examining the impact of COVID-19 on pneumonia diagnosis and disease models
 
+This work was presented as a poster at MedInfo 2023 in Sydney, Australia.
+
 _Authors_: Alec Chapman, Kelly Peterson, Elizabeth Rutter, McKenna Nevers, Jian Ying,
 David Classen, Makoto Jones, Matthew Samore, and Barbara Jones
 
