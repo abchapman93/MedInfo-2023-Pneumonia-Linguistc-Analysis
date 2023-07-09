@@ -5,6 +5,15 @@ David Classen, Makoto Jones, Matthew Samore, and Barbara Jones
 
 *Affiliations*: University of Utah School of Medicine and the US Department of Veterans Affairs Salt Lake City Healthcare System
 
+Poster: [./Alec_Chapman_PneumoniaLinguisticTrends.pdf](./Alec_Chapman_PneumoniaLinguisticTrends.pdf)
+
+## Abstract
+_Written clinical language embodies and reflects the clinician’s mental models of disease. 
+Prior to the COVID-19 pandemic, pneumonia was shifting away from concern for healthcare-associated pneumonia and toward 
+recognition of heterogeneity of pathogens and host response. 
+How these models are reflected in clinical language or whether they were impacted by the pandemic has not been studied. 
+We aimed to assess changes in the language used to describe pneumonia following the COVID-19 pandemic._
+
 ## Background
 The way clinicians think about and treat diseases such as pneumonia changes over time. These changes 
 can occur due to a number of factors, including:
@@ -61,3 +70,61 @@ We might also be interested in whether changes in term prevalence occur only in 
 
 ### Trend analysis
 After fitting our models, we obtain the expected probability by predicting the probability of each term over time. To compare pre- and post-pandemic trends, we obtain a counterfactual prediction by setting $A_i$ and/or $C_i$ to 0 for each post-pandemic hospitalization. To compare general secular trends we can compare this counterfactual probability with the observed probabilities in 2016.
+
+## Results
+We'll step through each term individually and interpret the results.
+### Viral pneumonia
+The figure below shows the model results among all cases (left) and stratified by Covid-19 status (right). Circles represent 
+the observed proportion of hospitalizations with a term each month. Solid lines show the mean probabilities predicted by the model, 
+while dashed lines show the counterfactual predictions based on pre-pandemic trends. On the right column, colors represent the 
+Covid-19 diagnosis status.
+
+We can see that prior to Covid-19, viral pneumonia showed a steady prevalence with some seasonality. 
+After the onset of the pandemic, there was an immediate increase in the prevalence of viral pneumonia. When stratifying by 
+Covid-19 status, the prevalence is much higher among Covid-19 positive patients, but among Covid-19 negative
+patients the probability is also higher than what would be expected if pre-pandemic trends had continued.
+
+![](./images/viral-pneumonia.png)
+
+### Bacterial pneumonia
+In contrast to viral pneumonia, the prevalence of bacterial pneumonia appeared to be increasing between 2016 and 2020 and 
+then decreased after the onset of the pandemic. When stratifying by Covid-19 status, we see that
+there is a similar prevalence among Covid (+) patients as would have been expected based on
+pre-pandemic trends, with the decrease largely being driven by Covid (-) patients.
+![](./images/bacterial-pneumonia.png)
+
+### Sepsis
+Similar to bacterial pneumonia, "sepsis" was steadily increasing between 2016 and 2020. There is
+then a sharp decrease after March 2020. This decrease appears among both Covid (+) and Covid (-) patients, but is much
+more pronounced among Covid (+) patients.
+
+![](./images/sepsis.png)
+
+### Healthcare-associated pneumonia (HCAP)
+"HCAP" was quite prevalent in 2017 and 2017 and then began to steadily decrease leading up to 2020.
+By the onset of the pandemic, the prevalence was quite low. This trend continued after the pandemic, without any significant
+difference among Covid (+) or (-) patients.
+
+![](./images/hcap.png)
+
+## Discussion
+The increased documentation of **"viral"** and **"bacterial pneumonia"** could represent an increased recognition 
+of the important distinction of pathogens. The increased prevalence of "viral pneumonia" is after March 2020 is of course
+partly due to the high prevalence and attention paid to viral infections due to Covid-19, but the increased prevalence of "viral pneumonia" among
+Covid-19 negative patients and "bacterial pneumonia" before Covid-19 and among Covid-19 positive patients could also suggest a general recognition of the importance of distinguishing between the two. 
+Future work could also look at how this trend corresponds to changes in treatment (e.g., antibiotic administration).
+
+**"Sepsis"** demonstrated a sharp decrease in prevalence after the onset of the pandemic. This could reflect the hazy, non-specific nature of sepsis,
+which may be used as a "catch all" for pneumonia-related complications. With the onset of Covid-19, the diagnostic focus may have turned to Covid-19 instead.
+
+Quality initiatives for pneumonia have gradually shifted away from a strong focus on preventing healthcare-associated pneumonia. 
+This is reflected in the long downward trend of **"hcap"**, which was highly prevalent in 2016, but decreased steadily over time and had very 
+low prevalence leading up to (and after) March 2020.
+
+## Conclusion
+Pneumonia prevalence was stable prior to and then increased during the pandemic. 
+Language used to describe pneumonia diagnosis in clinical notes demonstrated a decline in HCAP, increased uncertainty,
+distinguishing bacterial from viral pneumonia, and increased characterizations of the host inflammatory response. 
+Clinical text can provide insight into shifting mental models of disease, which may explain changes and variation in clinical behavior. 
+Future work is needed to understand how language and behavior influence each other in different settings and whether 
+the pandemic will have lasting impacts on our models of respiratory infection.
