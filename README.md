@@ -41,8 +41,23 @@ in at least one note.
 
 ### Temporal Model
 Our objective was to study trends in documentation over calendar time, pre- and post-pandemic, and by Covid-19 status.
-To do this, we modeled the probability that a hospitalization would have a note with a term using a logistic regression model:
+To do this, we modeled the probability that a hospitalization would have a note with a term using a segmented logistic regression model.
 
-For each term, let $Y_{it}$ be 1 if a hospitalization _i_ occurring at time _t_ contains that term. Then we can model
+#### Model 1
+
+For each term, let $Y_{i}$ be 1 if a hospitalization _i_ occurring at time $t_i$ contains that term. Then we can model
 the probability of a hospitalization containing that term as:
-$$logit(P[Y_{it} = 1]) = \beta_0 + \beta_1 t_i + $$
+$$logit(P[Y_{it} = 1]) = \beta_0 + \beta_1 t_i + \beta_2 \mathbf{F(t_i)} + \beta_3 A_{t_i} + \beta_4 (A_{t_i} \times t_i)  + \beta_5 (A_{t_i} \times F(t_i))$$
+
+where:
+- $t_i$ represents the number of days January 1st, 2016 and the hospitalization discharge and
+- $\mathbf{F(t_i)}$ is a polynomial spline on the day of the year
+- A_{t_i} is an indicator variable for whether the hospitalization occurred before or after March 1st, 2020
+
+Intuitively, $\beta_1$ captures an overall temporal trend in documentation between 2016 and 2021. We would expect this to capture non-pandemic-related changes in documentation patterns. $\beta_2$ should allow us to model possible seasonal trends. $\beta_3$ should capture the immediate shift in documentation caused by the pandemic, while the remaining coefficients should capture the interactions between the pandemic and time.
+
+#### Model 2
+We might also be interested in whether changes in term prevalence occur only in Covid-19 positive patients or whether it is a more general change observed in all pneumonia patients. To do this, will add additional terms to our model: $\beta_6 C_i + \beta_7(C_i \times t_i) + \beta_8 (C_i \times F(t_i))$, where $C_i$ is an indicator for whether the patient was Covid (+) during their hospitalization.
+
+### Trend analysis
+After fitting our models, we obtain the expected probability by predicting the probability of each term over time. To compare pre- and post-pandemic trends, we obtain a counterfactual prediction by setting $A_i$ and/or $C_i$ to 0 for each post-pandemic hospitalization. To compare general secular trends we can compare this counterfactual probability with the observed probabilities in 2016.
